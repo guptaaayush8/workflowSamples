@@ -9,7 +9,6 @@ jobs:
       uses: actions/checkout@v4.2.2
     - name: Archive Files
       run: |
-        cd web-api/dist
         zip -r web.zip . -i web-api/dist/**/*
         ls -R
     - name: upload
