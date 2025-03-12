@@ -1,0 +1,20 @@
+name: pipe
+on: workflow_dispatch
+
+jobs:
+  first:
+    runner: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.2.2
+    - name: Archive Files
+      run: |
+        cd web-api/dist
+        zip -r web.zip . -i web-api/dist/**/*
+        ls -R
+    - name: upload
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: web
+        path: web.zip
+      
