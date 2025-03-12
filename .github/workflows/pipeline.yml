@@ -16,4 +16,12 @@ jobs:
       with:
         name: web
         path: web-api/dist/**
+  second:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download
+        uses: actions/download-artifact@v4.1.9
+        with:
+          name: web
+        
       
