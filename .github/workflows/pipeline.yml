@@ -1,5 +1,8 @@
 name: pipe
-on: workflow_dispatch
+on: 
+  push:
+    paths-ignore:
+    - '.github/workflows/**'
 
 jobs:
   first:
