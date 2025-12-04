@@ -12,28 +12,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
+    - name: Checkout
       uses: actions/checkout@v4.2.2
+    
     - name: Archive Files
       run: |
-        zip -r web.zip . -i ./web-api/dist/**/*
+        zip -r web.zip -j web-api/dist/*
         ls -R
-    - name: upload
+    
+    - name: Upload Pre-Compressed Zip (No Re-compression)
       uses: actions/upload-artifact@v4.6.1
       with:
-        name: web2
-        # path: web-api/dist/**
+        name: web-dist
         path: web.zip
-        compression-level: 0
+        compression-level: 0  # Disable compression - store as-is
+        retention-days: 7
+  
   release:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: download
+      - name: Download Artifact
         uses: actions/download-artifact@v4.1.9
         with:
-          name: web2
-      - name: unarchive
-        run: unzip web.zip
-      - run: ls -R
+          name: web-dist
+          path: ./downloaded
+      
+      - name: List Downloaded Files
+        run: ls -R ./downloaded
       
