@@ -55,4 +55,8 @@ jobs:
       #   run: ls -R ./downloaded
       - name: Call hello-world workflow
         uses: ./.github/workflows/hello-world.yml
+        with: 
+          config-path: "asd"
+        secrets: 
+          token: "asdsd"
       
