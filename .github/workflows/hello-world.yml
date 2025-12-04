@@ -5,14 +5,14 @@ on:
     branches: 
       - main
       - develop
-    # paths:
-    #   - '**.js'
-    #   - '**.py'
-    paths-ignore:
-      - '.github/**'
-      - 'docs/**'
-    tags:
-      - 'v*'
+    # # paths:
+    # #   - '**.js'
+    # #   - '**.py'
+    # paths-ignore:
+    #   - '.github/**'
+    #   - 'docs/**'
+    # tags:
+    #   - 'v*'
   
   
   # Trigger on workflow dispatch (manual trigger)
@@ -57,16 +57,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     environment: test
-    env:
-      ENVIRONMENT: ${{ inputs.environment }}
-      LOG_LEVEL: ${{ inputs.log_level }}
+    # env:
+    #   ENVIRONMENT: ${{ inputs.environment }}
+    #   LOG_LEVEL: ${{ inputs.log_level }}
 
     steps:
   
-    - name: Print Log Level On ${{ env.ENVIRONMENT }}
+    - name: Print Log Level On 
       run: |
-        echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
-        echo "config path: ${{ env.configpath }}"
+
         echo "${{ vars.repo_var }}"
         echo "${{ vars.test_var }}"
         echo "${{ secrets.test_secret }}"
