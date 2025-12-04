@@ -56,6 +56,8 @@ env:
 jobs:
   dev:
     runs-on: ubuntu-latest
+    outputs:
+      devVar: ${{ steps.set_variable.outputs.dev_var }}
     steps: 
     - name: hi
       run: echo "hi"
@@ -64,22 +66,24 @@ jobs:
       run: echo "dev_var=I am Dev Var" >> $GITHUB_OUTPUT
     - name: print dev_var
       run: echo "Dev variable is ${{ steps.set_variable.outputs.dev_var }}"
-  # test:
-  #   runs-on: ubuntu-latest
-  #   needs: 
-  #   - dev
-  #   environment: test
-  #   # env:
-  #   #   ENVIRONMENT: ${{ inputs.environment }}
-  #   #   LOG_LEVEL: ${{ inputs.log_level }}
+  test:
+    runs-on: ubuntu-latest
+    needs: 
+    - dev
+    # environment: test
+    env:
+    #   ENVIRONMENT: ${{ inputs.environment }}
+    #   LOG_LEVEL: ${{ inputs.log_level }}
 
-  #   steps:
+      dev_var: ${{ needs.dev.outputs.devVar }}
+
+    steps:
   
-  #   - name: Print Log Level On 
-  #     run: |
+    - name: Print Log Level On 
+      run: |
 
-  #       echo "${{ vars.repo_var }}"
-  #       echo "${{ vars.test_var }}"
-  #       echo "${{ secrets.test_secret }}"
+        echo "${{ vars.repo_var }}"
+        echo "${{ env.dev_var }}"
+        echo "${{ secrets.test_secret }}"
 
 
