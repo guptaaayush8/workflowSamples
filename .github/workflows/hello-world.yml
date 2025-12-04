@@ -73,18 +73,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
     - dev
-    # environment: test
+    environment: test # A test env is created on portal which has secrets and env variable set .... repo is set to public to allow approvals
     env:
-    #   ENVIRONMENT: ${{ inputs.environment }}
-    #   LOG_LEVEL: ${{ inputs.log_level }}
-
       dev_var: ${{ needs.dev.outputs.devVar }}
-
     steps:
-  
     - name: Print Log Level On 
       run: |
-
         echo "${{ vars.repo_var }}"
         echo "${{ env.dev_var }}"
         echo "${{ secrets.test_secret }}"
