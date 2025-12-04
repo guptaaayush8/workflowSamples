@@ -10,6 +10,7 @@ jobs:
             - name: e
               run: echo "hello"
     child_workflow:
+        needs: first
         uses: ./.github/workflows/hello-world.yml
         with: 
             config-path: "asd"
