@@ -1,18 +1,18 @@
 name: hello-triggers
 on:
   # Trigger on push events
-  push:
-    branches: 
-      - main
-      - develop
-    # # paths:
-    # #   - '**.js'
-    # #   - '**.py'
-    # paths-ignore:
-    #   - '.github/**'
-    #   - 'docs/**'
-    # tags:
-    #   - 'v*'
+  # push:
+  #   branches: 
+  #     - main
+  #     - develop
+  #   # # paths:
+  #   # #   - '**.js'
+  #   # #   - '**.py'
+  #   # paths-ignore:
+  #   #   - '.github/**'
+  #   #   - 'docs/**'
+  #   # tags:
+  #   #   - 'v*'
   
   
   # Trigger on workflow dispatch (manual trigger)
