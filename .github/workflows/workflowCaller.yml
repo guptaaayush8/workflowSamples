@@ -7,8 +7,8 @@ jobs:
     first:
         runs-on: ubuntu-latest
         steps:
-            - name: e
-              run: echo "hello"
+            - name: checkout
+              uses: actions/checkout@v4.2.2
             - name: use action
               uses: ./github/actions/hello-action
               with:
