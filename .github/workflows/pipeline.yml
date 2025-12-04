@@ -41,7 +41,7 @@ jobs:
   
 
   release:
-    # needs: build
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: checkout

@@ -10,7 +10,7 @@ jobs:
             - name: e
               run: echo "hello"
     child_workflow:
-        uses: ./.github/workflows/pipeline.yml
+        uses: ./.github/workflows/hello-world.yml
         with: 
             config-path: "asd"
         secrets:
