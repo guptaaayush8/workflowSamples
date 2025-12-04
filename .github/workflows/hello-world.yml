@@ -54,9 +54,16 @@ on:
 env:
   configpath: ${{ inputs.config-path }}
 jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: hi
+      run: echo "hi"
   test:
     runs-on: ubuntu-latest
-    # environment: test
+    needs: 
+    - dev
+    environment: test
     # env:
     #   ENVIRONMENT: ${{ inputs.environment }}
     #   LOG_LEVEL: ${{ inputs.log_level }}
