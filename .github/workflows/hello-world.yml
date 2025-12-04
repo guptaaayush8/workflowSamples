@@ -85,5 +85,6 @@ jobs:
         echo "${{ vars.repo_var }}"
         echo "${{ env.dev_var }}"
         echo "${{ secrets.test_secret }}"
-
+        echo "${{ env.configpath }}"
+        echo "${{secrets.token}}"
 
