@@ -11,46 +11,48 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4.2.2
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v4.2.2
     
-    - name: Cache web.zip
-      id: cache-web-zip
-      uses: actions/cache@v4
-      with:
-        path: web.zip
-        key: ${{ runner.os }}-web-zip-${{ hashFiles('web-api/dist/**') }}
+  #   - name: Cache web.zip
+  #     id: cache-web-zip
+  #     uses: actions/cache@v4
+  #     with:
+  #       path: web.zip
+  #       key: ${{ runner.os }}-web-zip-${{ hashFiles('web-api/dist/**') }}
     
-    - name: Archive Files
-      if: steps.cache-web-zip.outputs.cache-hit != 'true'
-      run: |
-        zip -r web.zip -j web-api/dist/*
-        ls -la web.zip
+  #   - name: Archive Files
+  #     if: steps.cache-web-zip.outputs.cache-hit != 'true'
+  #     run: |
+  #       zip -r web.zip -j web-api/dist/*
+  #       ls -la web.zip
     
-    - name: Upload Pre-Compressed Zip (No Re-compression)
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: web-dist
-        path: web.zip
-        # compression-level: 0
-        retention-days: 7
+  #   - name: Upload Pre-Compressed Zip (No Re-compression)
+  #     uses: actions/upload-artifact@v4.6.1
+  #     with:
+  #       name: web-dist
+  #       path: web.zip
+  #       # compression-level: 0
+  #       retention-days: 7
   
 
   release:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v4.1.9
-        with:
-          name: web-dist
-          path: ./downloaded
+      - name: checkout
+        uses: actions/checkout@v4.2.2
+      # - name: Download Artifact
+      #   uses: actions/download-artifact@v4.1.9
+      #   with:
+      #     name: web-dist
+      #     path: ./downloaded
       
-      - name: List Downloaded Files
-        run: ls -R ./downloaded
+      # - name: List Downloaded Files
+      #   run: ls -R ./downloaded
       - name: Call hello-world workflow
         uses: ./.github/workflows/hello-world.yml
       
