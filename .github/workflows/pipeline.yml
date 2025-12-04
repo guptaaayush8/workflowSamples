@@ -7,6 +7,8 @@ on:
     # - '.github/workflows/**'
 
     
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -36,7 +38,7 @@ jobs:
         # compression-level: 0
         retention-days: 7
   
-        
+
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -49,4 +51,6 @@ jobs:
       
       - name: List Downloaded Files
         run: ls -R ./downloaded
+      - name: Call hello-world workflow
+        uses: ./.github/workflows/hello-world.yml
       
