@@ -54,17 +54,18 @@ on:
 env:
   configpath: ${{ inputs.config-path }}
 jobs:
-  print-hello:
+  dev:
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT: ${{ inputs.environment }}
       LOG_LEVEL: ${{ inputs.log_level }}
 
     steps:
-    - name: Print Hello
-      run: echo "Hello, world!"
-    
+  
     - name: Print Log Level On ${{ env.ENVIRONMENT }}
       run: |
         echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
         echo "config path: ${{ env.configpath }}"
+        echo "${{ vars}}"
+  
+
