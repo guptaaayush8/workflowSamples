@@ -10,7 +10,7 @@ jobs:
             - name: checkout
               uses: actions/checkout@v4.2.2
             - name: use action
-              uses: ./github/actions/hello-action
+              uses: ./.github/actions/hello-action
               with:
                 printWhat: "Hello from ${{ github.actor }}"
     child_workflow: # This is a dedicated job
