@@ -66,7 +66,12 @@ jobs:
       run: |
         echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
         echo "config path: ${{ env.configpath }}"
-        echo "${{ vars}}"
+        echo "${{ vars.repo_var }}"
         echo "${{github}}"
-  
+    - name: vars
+      run: vars
+    - name: github
+      run: github
+    - name: env
+      run: env
 
