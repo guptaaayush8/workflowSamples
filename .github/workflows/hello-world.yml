@@ -5,9 +5,9 @@ on:
     branches: 
       - main
       - develop
-    paths:
-      - '**.js'
-      - '**.py'
+    # paths:
+    #   - '**.js'
+    #   - '**.py'
     paths-ignore:
       - '.github/**'
       - 'docs/**'
