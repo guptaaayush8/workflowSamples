@@ -4,9 +4,20 @@ inputs:
   printWhat:
     required: true
     description: 'What to print'
+
+outputs:
+  someResponse:
+    description: 'The response from the action'
+    value: ${{ steps.output.outputs.someResponse }}
+
 runs:
   using: composite
   steps:
     - name: Print Message
       shell: bash
       run: echo "${{ inputs.printWhat }}"
+    - name: set outputs
+      id: output
+      shell: bash
+      run: |
+        echo "someResponse=Response: ${{ inputs.printWhat }}" >> $GITHUB_OUTPUT

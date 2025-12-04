@@ -51,6 +51,9 @@ on:
     secrets:
       token:
         required: true
+    outputs:
+      devResponse:
+        value: ${{ jobs.dev.outputs.devVar }}
 env:
   configpath: ${{ inputs.config-path }}
 jobs:

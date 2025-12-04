@@ -11,8 +11,11 @@ jobs:
               uses: actions/checkout@v4.2.2
             - name: use action
               uses: ./.github/actions/hello-action
+              id: composite_action
               with:
                 printWhat: "Hello from ${{ github.actor }}"
+            - name: output from composite action
+              run: echo "${{ steps.composite_action.outputs.someResponse }}"
     child_workflow: # This is a dedicated job
         needs: first
         uses: ./.github/workflows/hello-world.yml
@@ -20,3 +23,9 @@ jobs:
             config-path: "asd"
         secrets:
             token: "sd"
+    next_stage:
+        needs: child_workflow
+        runs-on: ubuntu-latest
+        steps:
+            - name: print Output
+              run: echo "${{ needs.child_workflow.outputs.devResponse }}"
