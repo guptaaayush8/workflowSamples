@@ -69,8 +69,5 @@ jobs:
         echo "${{ vars.repo_var }}"
         echo "${{ vars.test_var }}"
         echo "${{ secrets.test_secret }}"
-    - name: github
-      run: github
-    - name: env
-      run: env
+
 
