@@ -67,5 +67,6 @@ jobs:
         echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
         echo "config path: ${{ env.configpath }}"
         echo "${{ vars}}"
+        echo "${{github}}"
   
 
