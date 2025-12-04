@@ -51,7 +51,8 @@ on:
     secrets:
       token:
         required: true
-
+env:
+  configpath: ${{ inputs.config-path }}
 jobs:
   print-hello:
     runs-on: ubuntu-latest
@@ -64,9 +65,6 @@ jobs:
       run: echo "Hello, world!"
     
     - name: Print Log Level On ${{ env.ENVIRONMENT }}
-      run: echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
-    
-    - name: Print inputs directly
       run: |
-        echo "Environment: ${{ inputs.environment }}"
-        echo "Log Level: ${{ inputs.log_level }}"
+        echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
+        echo "config path: ${{ env.configpath }}"
