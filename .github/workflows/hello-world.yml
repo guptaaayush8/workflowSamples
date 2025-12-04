@@ -1,0 +1,66 @@
+name: hello-triggers
+on:
+  # Trigger on push events
+  push:
+    branches: 
+      - main
+      - develop
+    paths:
+      - '**.js'
+      - '**.py'
+    paths-ignore:
+      - '.github/**'
+      - 'docs/**'
+    tags:
+      - 'v*'
+  
+  
+  # Trigger on workflow dispatch (manual trigger)
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      log_level:
+        description: 'Log level'
+        required: false
+        default: 'info'
+        type: choice
+        options:
+          - debug
+          - info
+          - warning
+          - error
+  
+  # Trigger on schedule (cron)
+  # schedule:
+  #   - cron: '0 0 * * *'  # Daily at midnight
+  #   - cron: '0 */6 * * *'  # Every 6 hours
+  
+  # Trigger when another workflow completes
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  print-hello:
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: ${{ inputs.environment }}
+      LOG_LEVEL: ${{ inputs.log_level }}
+
+    steps:
+    - name: Print Hello
+      run: echo "Hello, world!"
+    - name: Print Log Level On Env
+      run: echo "Log level is $LOG_LEVEL"
