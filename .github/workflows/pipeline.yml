@@ -24,7 +24,7 @@ jobs:
         name: web
         path: web-api/dist/**
   second:
-    needs: first
+    needs: new-first
     runs-on: ubuntu-latest
     steps:
       - name: download
