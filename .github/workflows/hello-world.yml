@@ -62,5 +62,11 @@ jobs:
     steps:
     - name: Print Hello
       run: echo "Hello, world!"
-    - name: Print Log Level On $ENVIRONMENT
-      run: echo "Log level is $LOG_LEVEL"
+    
+    - name: Print Log Level On ${{ env.ENVIRONMENT }}
+      run: echo "Log level is ${{ env.LOG_LEVEL }} on ${{ env.ENVIRONMENT }}"
+    
+    - name: Print inputs directly
+      run: |
+        echo "Environment: ${{ inputs.environment }}"
+        echo "Log Level: ${{ inputs.log_level }}"
