@@ -9,7 +9,11 @@ jobs:
         steps:
             - name: e
               run: echo "hello"
-    child_workflow:
+            - name: use action
+              uses: ./github/actions/hello-action
+              with:
+                printWhat: "Hello from ${{ github.actor }}"
+    child_workflow: # This is a dedicated job
         needs: first
         uses: ./.github/workflows/hello-world.yml
         with: 

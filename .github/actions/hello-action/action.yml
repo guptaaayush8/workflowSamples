@@ -1,0 +1,12 @@
+name: Dummy Action
+description: 'A simple action that prints a message'
+inputs:
+  printWhat:
+    required: true
+    description: 'What to print'
+runs:
+  using: composite
+  steps:
+    - name: Print Message
+      shell: bash
+      run: echo "${{ inputs.printWhat }}"
